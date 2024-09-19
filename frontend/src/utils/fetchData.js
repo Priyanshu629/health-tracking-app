@@ -1,7 +1,7 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { validateBloodPressure } from "./utilityFunction";
-const BACKEND_URL = "http://localhost:5000/api/v1/health-records";
+const BACKEND_URL = "https://health-tracking-app-inqk.onrender.com/api/v1/health-records/"
 
 export const getHealthRecords = async () => {
   const response = await axios.get(BACKEND_URL);
@@ -11,7 +11,7 @@ export const getHealthRecords = async () => {
   }
 };
 export const getHealthRecord = async (id) => {
-  const response = await axios.get(BACKEND_URL + `/${id}`);
+  const response = await axios.get(BACKEND_URL + `${id}`);
 
   if (response.status == 200) {
     return response.data.healthRecord;
@@ -113,7 +113,7 @@ export const updateHealthRecord = async (
       bloodPressure,
       bodyTemperature,
     };
-    const response = await axios.put(BACKEND_URL + `/${id}`, data, {
+    const response = await axios.put(BACKEND_URL + `${id}`, data, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -131,7 +131,7 @@ export const updateHealthRecord = async (
 
 export const deleteHealthRecord = async (id) => {
   try {
-    const response = await axios.delete(BACKEND_URL + `/${id}`);
+    const response = await axios.delete(BACKEND_URL + `${id}`);
 
     if (response.status == 200) {
       toast.success(response.data.message);
